@@ -28,7 +28,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import requests
-
+import cloudscraper
 # ====== USTAWIENIA ==========================================================
 
 # Wklej tu adresy swoich wyszukiwań - po jednym na portal, w cudzysłowie,
@@ -168,9 +168,10 @@ def notify(message: str) -> None:
 
 def check(url: str, seen: dict) -> None:
     site = urlparse(url).netloc
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=30)
-    except requests.RequestException as e:
+  try:
+        scraper = cloudscraper.create_scraper()
+        resp = scraper.get(url, headers=HEADERS, timeout=30)
+    except Exception as e:
         print(f"[!] {site}: błąd połączenia: {e}")
         return
 
