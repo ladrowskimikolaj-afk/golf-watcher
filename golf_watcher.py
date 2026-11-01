@@ -165,7 +165,6 @@ def notify(message: str) -> None:
         except Exception as e:
             print(f"[!] E-mail nie zadziałał: {e}")
 
-
 def check(url: str, seen: dict) -> None:
     site = urlparse(url).netloc
     try:
@@ -174,7 +173,7 @@ def check(url: str, seen: dict) -> None:
     except Exception as e:
         print(f"[!] {site}: błąd połączenia: {e}")
         return
-
+        
     if resp.status_code != 200:
         print(f"[!] {site}: kod {resp.status_code} (portal mógł zablokować skrypt)")
         return
