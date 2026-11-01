@@ -168,7 +168,7 @@ def notify(message: str) -> None:
 
 def check(url: str, seen: dict) -> None:
     site = urlparse(url).netloc
-  try:
+    try:
         scraper = cloudscraper.create_scraper()
         resp = scraper.get(url, headers=HEADERS, timeout=30)
     except Exception as e:
